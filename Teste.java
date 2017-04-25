@@ -5,17 +5,19 @@ public class Teste {
 	{
 		Registros Teste = new Registros();
 		
-		Teste.Adicionar("João da Silva");
-		Teste.ListarUsuarios();
+		Teste.AdicionarUsuario("João da Silva");
+		Teste.AdicionarUsuario("Fulano de Tal");
 		
-		Teste.Adicionar("Fulano de Tal");
-		Teste.ListarUsuarios();
+		Teste.AdicionarLivro("A Cidade e as Serras");
+		Teste.AdicionarLivro("O Centeio");
 		
-		Teste.Remover("João da Silva");
-		Teste.ListarUsuarios();
+		Teste.AdicionarEmprestimo("João da Silva", "A Cidade e as Serras");
+		Teste.ListarEmprestimos();
 		
-		Teste.Bloquear("Fulano de Tal", 2017, 4, 31);
-		Teste.ListarUsuarios();
-	}
+		Teste.AdicionarDevolucao("Joao da Silva", "A Cidade e as Serras");
+		Teste.ListarDevolucoes();
+		
+		
 	
+	}
 }
