@@ -2,13 +2,13 @@ import java.util.GregorianCalendar;
 
 public class Emprestimo {
 
-	final int corrente = 4;
-	final int devolvido = 5;
+	final int corrente = 1;
+	final int devolvido = 2;
 	
 	String Nome_Usuario;
 	String Titulo;
-	int situacao;
 	GregorianCalendar data;
+	int situacao;
 	
 	Emprestimo(String Nome, String _Titulo)
 	{
@@ -18,29 +18,29 @@ public class Emprestimo {
 		situacao = corrente;
 	}
 	
-	String getTitulo ()
-	{
-		return Titulo;
-	}
-	
-	String getNome ()
+	String getNomeUsuario()
 	{
 		return Nome_Usuario;
 	}
 	
-	GregorianCalendar getData()
+	String getTitulo()
 	{
-		return data;
-	}
-	
-	int getSituacao()
-	{
-		return situacao;
+		return Titulo;
 	}
 	
 	void Devolver ()
 	{
 		situacao = devolvido;
+	}
+	
+	int getSituacao ()
+	{
+		return situacao;
+	}
+	
+	GregorianCalendar getData()
+	{
+		return data;
 	}
 	
 }

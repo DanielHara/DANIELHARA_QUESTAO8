@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class Registros
 {
@@ -61,6 +62,20 @@ public class Registros
 		}
 	}
 	
+	public void BloquearExtravio (String Nome)
+	{
+		int i;
+		
+		for (i = 0; i < Lista_Usuario.size(); i++)
+		{
+			if (Lista_Usuario.get(i).getNome().compareTo(Nome) == 0)
+			{
+				Lista_Usuario.get(i).BloquearExtravio();
+				break;
+			}
+		}
+	}
+	
 	public void AdicionarEmprestimo (String _Nome, String _Titulo)
 	{
 		Lista_Emprestimo.add(new Emprestimo(_Nome, _Titulo));
@@ -80,10 +95,12 @@ public class Registros
 		for (i = 0; i < Lista_Livro.size(); i++)
 		{
 			if (Lista_Livro.get(i).getTitulo().compareTo(_Titulo) == 0)
+			{
 				Lista_Livro.get(i).DevolverLivro();
+			}
 		}
 		for (i = 0; i < Lista_Emprestimo.size(); i++)
-			if (Lista_Emprestimo.get(i).getTitulo().compareTo(_Titulo) == 0 && Lista_Emprestimo.get(i).getNome().compareTo(_Nome) == 0)
+			if (Lista_Emprestimo.get(i).getTitulo().compareTo(_Titulo) == 0)
 				Lista_Emprestimo.get(i).Devolver();
 	}
 	
@@ -91,18 +108,8 @@ public class Registros
 	{
 		int i;
 		for (i = 0; i < Lista_Emprestimo.size(); i++)
-			if (Lista_Emprestimo.get(i).getNome().compareTo(_Nome) == 0 && Lista_Emprestimo.get(i).getSituacao() == corrente)
+			if (Lista_Emprestimo.get(i).getNomeUsuario().compareTo(_Nome) == 0 && Lista_Emprestimo.get(i).getSituacao() == corrente)
 				System.out.println("Livro \"" + Lista_Emprestimo.get(i).getTitulo() + "\": emprestado");
-	}
-	
-	public void SituacaoUsuario (String _Nome)
-	{
-		int i;
-		for (i = 0; i < Lista_Usuario.size(); i++)
-		{
-			if (Lista_Usuario.get(i).getNome().compareTo(_Nome) == 0)
-				Lista_Usuario.get(i).PrintSituacaoUsuario();
-		}
 	}
 	
 	public void PrintSituacaoLivro (String _Titulo)
@@ -122,6 +129,45 @@ public class Registros
 			}
 	}
 	
+	public void SituacaoUsuario (String _Nome)
+	{
+		int i;
+		for (i = 0; i < Lista_Usuario.size(); i++)
+		{
+			if (Lista_Usuario.get(i).getNome().compareTo(_Nome) == 0)
+				Lista_Usuario.get(i).PrintSituacaoUsuario();
+		}
+	}
+	
+	private String DateAsString (GregorianCalendar A)
+	{
+		if (A != null)
+			return A.get(GregorianCalendar.DAY_OF_MONTH) + "/" + A.get(GregorianCalendar.MONTH) + "/" + A.get(GregorianCalendar.YEAR);
+		else return "";
+	}
+	
+	
+	public void ListarEmprestimos ()
+	{
+		int i;
+		for (i = 0; i < Lista_Emprestimo.size(); i++)
+		{
+			System.out.println("Emprestimo:");
+			System.out.println("Livro: " + Lista_Emprestimo.get(i).getTitulo() + ", Usuário: " + Lista_Emprestimo.get(i).getNomeUsuario());
+			System.out.println("Emprestado em " + DateAsString(Lista_Emprestimo.get(i).getData()));
+		}
+	}
+	
+	public void ListarDevolucoes ()
+	{
+		int i;
+		for (i = 0; i < Lista_Devolucao.size(); i++)
+		{
+			System.out.println("Devolução:");
+			System.out.println("Livro: " + Lista_Devolucao.get(i).getTitulo() + ", Usuário: " + Lista_Devolucao.get(i).getNome());
+			System.out.println("Devolvido em " + DateAsString(Lista_Devolucao.get(i).getData()));
+		}
+	}
 	
 
 }

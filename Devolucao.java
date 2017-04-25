@@ -1,6 +1,5 @@
 import java.util.GregorianCalendar;
 
-
 public class Devolucao {
 
 	String Nome_Usuario;
